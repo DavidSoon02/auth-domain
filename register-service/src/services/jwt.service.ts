@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 
 export interface TokenPayload {
     userId: string;
@@ -15,15 +15,15 @@ export class JwtService {
     }
 
     generateToken(payload: TokenPayload): string {
-        return jwt.sign(payload, this.secretKey, {
+        return sign(payload, this.secretKey, {
             expiresIn: this.expiresIn,
             issuer: 'register-service'
-        });
+        } as any);
     }
 
     verifyToken(token: string): TokenPayload {
         try {
-            return jwt.verify(token, this.secretKey) as TokenPayload;
+            return verify(token, this.secretKey) as TokenPayload;
         } catch (error) {
             throw new Error('Invalid token');
         }
