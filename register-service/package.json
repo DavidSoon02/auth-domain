@@ -2,10 +2,10 @@
   "name": "register-service",
   "version": "1.0.0",
   "description": "User registration service with GitHub OAuth",
-  "main": "dist/index.js",
+  "main": "dist/index.ts",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "node src/index.ts",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts"
   },
   "dependencies": {
