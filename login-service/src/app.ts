@@ -35,10 +35,13 @@ export class App {
         // Security middleware
         this.app.use(helmet());
 
-        // CORS configuration
+        // CORS configuration - Allow all origins
         this.app.use(cors({
-            origin: process.env.ALLOWED_ORIGINS?.split(',') || ['http://localhost:3000'],
-            credentials: true
+            origin: true, // Allow all origins
+            credentials: true,
+            methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+            allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+            optionsSuccessStatus: 200
         }));
 
         // Body parsing middleware
